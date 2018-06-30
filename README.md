@@ -4,7 +4,7 @@
 Yet-lebla's REST API and web client implemented for SE project.
 
 #### Developed by
-**S.E** (Regular, Section 2)
+S.E (Regular, Section 2)
 
 **Natnael Sisay** 
 
@@ -13,6 +13,8 @@ Yet-lebla's REST API and web client implemented for SE project.
 **Yosef Worku** 
 
 **Tibebeselasie Mehari** 
+
+
 
 #### Implementation details & Dependencies
 The REST API uses "**express** as a back-end framework since it provides ease of making **middlewares** (that we have used for authentication & other useful features) and handling **routing**.
