@@ -40,6 +40,6 @@ goto the `bin` folder. (use `cd` command in terminal or CMD)
 
 then run
 
-`node www`
+`$ root@local: node www`
 
 the server will be running on PORT 3001 unless specified in command line arguments.
