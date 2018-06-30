@@ -16,6 +16,7 @@ S.E (Regular, Section 2)
 
 
 
+
 #### Implementation details & Dependencies
 The REST API uses "**express** as a back-end framework since it provides ease of making **middlewares** (that we have used for authentication & other useful features) and handling **routing**.
 
