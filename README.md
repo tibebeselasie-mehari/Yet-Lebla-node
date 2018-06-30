@@ -17,7 +17,7 @@ S.E (Regular, Section 2)
 
 
 
-#### Implementation details & Dependencies
+## Implementation details & Dependencies
 The REST API uses "**express** as a back-end framework since it provides ease of making **middlewares** (that we have used for authentication & other useful features) and handling **routing**.
 
 As for the persistance tier, we have used **mongoose library**. This is because it introduces the idea of using **schema** into the schema-less world of the document based database MongoDB**. Also, it serves as an ODM. (lets us interact with high-level models and it 
@@ -29,11 +29,11 @@ All the 3-rd party dependencies can easily be installed by running:
 
 `$ root@local: npm install`
 
-#### Environment
+## Environment
 latest version of **node.js** (8+ at the time of development)
 
-#### Usage
-###### To start the API
+## Usage
+#### To start the API
 first spin up a MongoDB instance on your machine (must be running port 27017)
 
 goto the `bin` folder. (use `cd` command in terminal or CMD)
