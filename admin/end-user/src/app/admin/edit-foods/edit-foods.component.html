@@ -1,0 +1,37 @@
+<h1>ማስተካከያ</h1>
+<hr/>
+<form>
+
+  <label>
+  የምግቡ ስም
+  <input class="input" type="text" name="foodname" value="{{food.label}}"/>
+  </label>
+  <br/>
+  <label>
+  የጾም (ኢኦተቤ)
+  <input class="check" type="checkbox" name="tsom" value="{{food.tsom}}"/>
+  </label>
+  <br/>
+
+  <label>
+  ሀላል (ሙስሊም)
+  <input class="checkbox" type="checkbox" name="halal" value="{{food.halal}}"/></label>
+  <br/>
+  <label>
+  ቦታ
+  <input class="input" type="text" name="place" value="{{food.place}}"/></label>
+  <br/>
+  <label>
+  ዋጋ
+  <input class="input" type="text" name="price"  value="{{food.price}}"/></label>
+  <br/>
+  <label>
+  English name:
+  <input class="input" type="text" name="english_name"  value="{{food.name}}"/>
+</label><br/>
+<br/>
+<button type="button" class="button is-info" (click)="editFood()">መዝግብ</button>
+
+</form>
+
+<app-modal [actions]="modal_behaviour"></app-modal>

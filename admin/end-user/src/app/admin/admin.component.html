@@ -1,0 +1,46 @@
+<section class="container" style="margin-top:24px;">
+  <div class="tabs is-toggle is-fullwidth">
+    <ul>
+      <li routerLink='foods' routerLinkActive="is-active" [routerLinkActiveOptions] = "{exact:true}">
+        <a>
+          <span class="icon is-small">
+            <i class="fas fa-image"></i>
+          </span>
+          <span>የምግቦች ማስተዳደሪያ</span>
+        </a>
+      </li>
+      <li routerLink='users' routerLinkActive="is-active" [routerLinkActiveOptions] = "{exact:true}">
+        <a>
+          <span class="icon is-small">
+            <i class="fas fa-music"></i>
+          </span>
+          <span>የተጠቃሚዎች ማስተዳደሪያ</span>
+        </a>
+      </li>
+      <li routerLink='places' routerLinkActive="is-active" [routerLinkActiveOptions] = "{exact:true}">
+        <a>
+          <span class="icon is-small">
+            <i class="fas fa-film"></i>
+          </span>
+          <span>የቦታዎች ማስተዳደሪያ</span>
+        </a>
+      </li>
+      <li>
+        <a>
+          <span class="icon is-small">
+            <i class="fas fa-file-alt"></i>
+          </span>
+          <span>የምግብ ምዝገባ ማረጋገጫ</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+  <div class="column is-12">
+    <div class="box content">
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+
+</section>

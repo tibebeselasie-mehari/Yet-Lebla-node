@@ -1,0 +1,55 @@
+<div class="columns">
+    <div class="column is-9">
+      <div class="box content">
+ 
+          <section class="hero is-primary is-small">
+              <div class="hero-body">
+                <div class="container">
+                  <h1 class="title">
+                      የተመዘገቡ ተጠቃሚዎች
+                  </h1>
+                  <br/>
+                </div>
+              </div>
+            </section>
+            <br/>
+  
+
+       <table>
+          <thead>
+            <th>ስም</th>
+            <th>የአባት ስም</th>
+            <th>የመጠቀሚያ ስም</th>
+            <th>የኢ-ሜይል አድራሻ</th>
+            <th>የጥበቃ ጥያቄ</th>
+            <th>የጥበቃ መልስ</th>
+            <th>እርምጃ 1</th>
+            <th>እርምጃ 2</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of getUsers();">
+              <td>{{user.firstname}}</td>
+              <td>{{user.lastname}}</td>
+              <td>{{user.username}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.security_question}}</td>
+              <td>{{user.security_answer}}</td>
+              <td>
+                <button class="button is-info" routerLink='edit/{{user.name}}'>አስተካክል</button>
+              </td>
+              <td>
+                <button class="button is-danger" (click)='removeUser()'>አስወግድ</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="column is-3">
+      <div class="box content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  
+  </div>
+  

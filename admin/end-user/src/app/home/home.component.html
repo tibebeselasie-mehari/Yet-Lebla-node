@@ -1,0 +1,136 @@
+<br/>
+<div class="container">
+<div class="tile is-ancestor">
+    <div class="tile is-vertical is-8">
+      <div class="tile">
+        <div class="tile is-parent is-vertical">
+          <article class="tile is-child notification is-primary">
+            <p class="title">በጣም ርካሽ ምግቦች</p>
+            <p class="subtitle">በአቅራቢያዎ ይፈልጉ</p>
+          </article>
+          <article class="tile is-child notification is-warning">
+            <p class="title">ከጓደኞቾ ጋር ይጋሩ</p>
+            <p class="subtitle">የፈለጉትን ምግብ</p>
+          </article>
+        </div>
+        <div class="tile is-parent">
+          <article class="tile is-child notification is-info">
+            <p class="title">ዛሬ የተመገቡትን ምግብ ያጋሩ</p>
+            <p class="subtitle">ባጋሩ ቁጥር ነጻ ምግብ የማግኘት እድሎን ይጨምራሉ
+            </p>
+            <figure class="image is-4by3">
+              <img src="640x480.png">
+            </figure>
+          </article>
+        </div>
+      </div>
+      <div class="tile is-parent">
+        <article class="tile is-child notification is-danger">
+          <p class="title">በሶሻል ሚዲያዎች ግንኙነታችን ይጥበቅ</p>
+          <p class="subtitle">በተለያዩ ማህበረሰባዊ መገናኛ መንገዶች ላይ እንገኛለን
+          </p>
+          <div class="content">
+              <button class="button">Facebook</button>
+              <button class="button">Google +</button>
+              <button class="button">Twitter</button>
+              <button class="button">Telegram</button>
+              <button class="button">WhatsApp</button>
+              <button class="button">YouTube</button>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="tile is-parent">
+      <article class="tile is-child notification is-success is-hoverable">
+        <div class="content">
+          <p class="title">የታዋቂዎች መደብ</p>
+          <p class="subtitle">ምግብ በማጋራት እና በመሳተፍ ታዋቂነትን ያገኙ ጀግኖች!</p>
+          <div class="content">
+      
+              <div class="box" *ngFor="let x of [1,2,3,4]">
+                  <article class="media">
+                    <div class="media-left">
+                      <figure class="image is-64x64">
+                        <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+                      </figure>
+                    </div>
+                    <div class="media-content">
+                      <div class="content">
+                        <p>
+                          <strong>Tibebeselasie Mehari</strong> <small>500 pts</small>
+                        </p>
+                      </div>
+                    </div>
+                  </article>
+                </div>
+
+
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+  
+</div>
+  
+<div class="hero-body">
+
+  <div class="container has-text-centered">
+    <div class="column is-6 is-offset-3">
+      <h1 class="title">
+        ምን አይነት ምግብ ፈልገዋል?
+      </h1>
+      <h2 class="subtitle">
+        የትልብላ ባሉበት ስፍራ አካባቢ ሆነው በአቅራቢያዎ የሚገኙ የምግብ አይነቶችን አማርጠው በተመጣጣኝ ዋጋ እንዲመገቡ የሚረዳ መተግበሪያ ነው
+      </h2>
+      <div class="box">
+
+        <div class="field is-grouped">
+          <p class="control is-expanded">
+            <input class="input" type="text" placeholder="ደስ የሚሎትን የምግብ አይነት እዚህ ይጻፉ...">
+          </p>
+          <p class="control">
+            <a class="button is-info">
+              ፈልግ!
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="main" class="container main_box">
+
+  <header class="container_box_header">የእለቱ ምርጥ ምግቦች</header>
+  <hr/>
+  <section class="columns">
+
+    <div class="column is-4" *ngFor="let food of specials;">
+      <div class="card">
+        <div class="card-image has-text-centered">
+          <img src="{{food.pic}}" style="height:275px" />
+        </div>
+        <div class="card-content">
+          <div class="content">
+            <h4>{{food.label}} </h4>
+              <section class="food_details">
+                ዋጋ:
+                <span class="value">{{food.price}}</span>
+                <br/> ቦታ:
+                <span class="value">{{food.place}}</span>
+                <br/>
+              </section>
+            <br/>
+            <p class="controls">
+              <a class="button is-info">እፈልጋለው</a>
+              <a class="button">አስተያየቶች</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+</section>

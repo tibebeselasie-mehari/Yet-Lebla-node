@@ -1,0 +1,88 @@
+
+.hero.is-info {
+    background: linear-gradient(
+        #00000080,
+        rgba(0, 0, 0, 0.5)
+      ), url('http://localhost:4200/assets/bg1.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .hero .nav, .hero.is-success .nav {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+  .hero .subtitle {
+    padding: 3rem 0;
+    line-height: 1.5;
+  }
+  
+  #navbar{
+      background-color: rgba(0,0,0,0.15);
+  }
+
+
+#header_container{
+    background: #333;
+}
+
+#header_bar{
+    background: #333;
+    position: relative;
+    z-index: 100;
+    height: 77px;
+
+    text-align: left;
+    font-family: ebrima;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    width: 980px;
+    margin: auto;
+    padding: auto;
+    overflow: hidden;
+}
+#logo_container{
+    width: 160px;
+    height: 76px;    
+    float:left;
+    padding: 20px;    
+}
+#logo_img{
+    height: 34px;
+    vertical-align: middle;
+}
+#main_nav { float:right; margin: 0px; }
+#main_nav li{
+    display: inline-block;
+    position: relative;
+ 
+    font-size: 15px;
+
+    font-weight: bold;
+    text-decoration: none;
+    height: 100%;
+    border: 0;
+    background: transparent;
+    padding: 25px;
+    color: #fff;
+
+    cursor: pointer;
+    transition: background-color .15s;
+}
+
+#body_container{
+    background: #dddddd;
+}
+
+#main_nav li:hover{
+    background-color: #0064b4;
+}
+#main_nav a{
+    color:white;
+}
+
+
+
+

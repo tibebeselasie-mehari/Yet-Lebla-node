@@ -1,0 +1,42 @@
+<h1>ማስተካከያ</h1>
+<hr/>
+<form>
+
+  <label>
+  ስም
+  <input class="input" type="text" name="firstname" value="{{food.firstname}}"/>
+  </label>
+  <br/>
+
+  <label>
+   የአባት ስም
+    <input class="input" type="text" name="lastname" value="{{food.lastname}}"/>
+    </label>
+    <br/>
+  
+    <label>
+    የኢ-ሜይል አድራሻ
+      <input class="input" type="text" name="firstname" value="{{food.email}}"/>
+      </label>
+      <br/>
+
+      <label>
+        የጥበቃ ጥያቄ
+        <input class="input" type="text" name="security_question" value="{{food.secirity_question}}"/>
+        </label>
+        <br/>
+      
+        <label>
+         የጥበቃ መልስ
+          <input class="input" type="text" name="security_answer" value="{{food.sequrity_answer}}"/>
+          </label>
+          <br/>
+        
+  <label>
+  English name:
+  <input class="input" type="text" name="english_name"  value="{{food.name}}"/>
+</label><br/>
+<br/>
+<button type="button" class="button is-info" (click)="editFood()">መዝግብ</button>
+
+</form>

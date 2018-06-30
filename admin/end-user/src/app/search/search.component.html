@@ -1,0 +1,250 @@
+<nav class="navbar is-white">
+  <div class="container">
+      <div class="tabs">
+          <ul>
+            <li class="is-active"><a>Pictures</a></li>
+            <li><a>Music</a></li>
+            <li><a>Videos</a></li>
+            <li><a>Documents</a></li>
+          </ul>
+        </div>
+  </div>
+
+  <div class="field has-addons">
+      <div class="control">
+        <input class="input" type="text" placeholder="Find a repository">
+      </div>
+      <div class="control">
+        <a class="button is-info">
+          Search
+        </a>
+      </div>
+    </div>
+</nav>
+
+
+<section class="container" style="margin-top:24px;">
+  <div class="columns">
+    <div class="column is-3">
+      <a class="button is-primary is-block is-alt is-large" href="#">New Post</a>
+      <aside class="menu">
+        <p class="menu-label">
+          Tags
+        </p>
+        <ul class="menu-list">
+          <li><a>Dashboard</a></li>
+          <li><a>Customers</a></li>
+          <li><a>Authentication</a></li>
+          <li><a>Payments</a></li>
+          <li><a>Transfers</a></li>
+          <li><a>Balance</a></li>
+        </ul>
+      </aside>
+
+      <aside class="menu">
+        <p class="menu-label">
+          Filter:
+        </p>
+
+        <div>
+            <header>ዝርዝር : </header>
+            <select [(ngModel)] = "sortBy" (ngModelChange) = "sortFoods()">
+              <option value="price">በዋጋ</option>
+              <option value="label">በስም</option>            
+              <option value="distance">በርቀት</option>
+              <option value="no_of_stars">በተወዳጅነት</option>
+            </select>
+            <select [(ngModel)] = "accending" (ngModelChange) = "sortFoods()">
+              <option value="true">ከላይ ወደ ታች</option>
+              <option value="false">ከታች ወደ ላይ</option>
+            </select>
+            
+          </div>
+        
+      </aside>
+
+      <aside class="menu">
+          <p class="menu-label">
+              ዋጋ : 
+          </p>
+           <ul class="menu-list">
+              <li><a>ሁሉንም</a></li>              
+              <li><a>በጣም ርካሽ (< 10 ብር)</a></li>
+              <li><a>ርካሽ (ከ10 - 20 ብር)</a></li>
+              <li><a>መካከለኛ (ከ20 - 50 ብር)</a></li>
+              <li><a>ውድ (ከ50 - 100 ብር)</a></li>
+              <li><a>በጣም ውድ (ከ100 - 200 ብር)</a></li>
+              <li><a>እጅግ ውድ (> 200 ብር)</a></li>           
+           </ul>
+          
+        </aside>
+
+    </div>
+
+    <div class="column is-9">
+      <div class="box content">
+        <article class="post">
+          <h4>Bulma: How do you center a button in a box?</h4>
+          <span class="pull-right has-text-grey-light"><i class="fa fa-comments"></i> 1</span>
+          <div class="media">
+            <div class="media-left">
+              <p class="image is-32x32">
+                <img src="http://bulma.io/images/placeholders/128x128.png">
+              </p>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <a href="#">@jsmith</a> replied 34 minutes ago  &nbsp; 
+                  <span class="tag">Question</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="post">
+          <h4>How can I make a bulma button go full width?</h4>
+          <span class="pull-right has-text-grey-light"><i class="fa fa-comments"></i> 0</span>
+          <div class="media">
+            <div class="media-left">
+              <p class="image is-32x32">
+                <img src="http://bulma.io/images/placeholders/128x128.png">
+              </p>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <a href="#">@red</a> replied 40 minutes ago  &nbsp; 
+                  <span class="tag">Question</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="post">
+          <h4>TypeError: Data must be a string or a buffer when trying touse vue-bulma-tabs</h4>
+          <span class="pull-right has-text-grey-light"><i class="fa fa-comments"></i> 13</span>
+          <div class="media">
+            <div class="media-left">
+              <p class="image is-32x32">
+                <img src="http://bulma.io/images/placeholders/128x128.png">
+              </p>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <a href="#">@jsmith</a> replied 53 minutes ago  &nbsp; 
+                  <span class="tag">Question</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="post">
+          <h4>How to vertically center elements in Bulma?</h4>
+          <span class="pull-right has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
+          <div class="media">
+            <div class="media-left">
+              <p class="image is-32x32">
+                <img src="http://bulma.io/images/placeholders/128x128.png">
+              </p>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <a href="#">@brown</a> replied 3 hours ago  &nbsp; 
+                  <span class="tag">Question</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="post">
+          <h4>I'm trying to use hamburger menu on bulma css, but it doesn't work. What is wrong?</h4>
+          <span class="pull-right has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
+          <div class="media">
+            <div class="media-left">
+              <p class="image is-32x32">
+                <img src="http://bulma.io/images/placeholders/128x128.png">
+              </p>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <a href="#">@hamburgler</a> replied 5 hours ago  &nbsp; 
+                  <span class="tag">Question</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+        <article class="post">
+          <h4>How to make tiles wrap with Bulma CSS?</h4>
+          <span class="pull-right has-text-grey-light"><i class="fa fa-comments"></i> 2</span>
+          <div class="media">
+            <div class="media-left">
+              <p class="image is-32x32">
+                <img src="http://bulma.io/images/placeholders/128x128.png">
+              </p>
+            </div>
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <a href="#">@rapper</a> replied 3 hours ago  &nbsp; 
+                  <span class="tag">Question</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section>
+  <div id="banner">
+      <div id="form">
+        <div>
+          <header>ምን አይነት ምግብ ፈልገዋል?</header>
+          <input type="text" name="for" placeholder="ደስ የሚሎትን የምግብ አይነት እዚህ ይጻፉ..."  [(ngModel)]="searchQuery"/>
+          <button (click)="searchFood()">ፈልግ!</button>
+        </div>
+        <div>
+          <label><input type="radio" name="searchType" value="fasting" [(ngModel)] = "searchType"/> የጾም ምግቦች</label>
+          <label><input type="radio" name="searchType" value="non_fasting" [(ngModel)] = "searchType"/> የፍስክ ምግቦች</label>
+          <label><input type="radio" name="searchType" value="all" [(ngModel)] = "searchType"/> ሁሉም</label>          
+        </div>
+      </div>
+<br/>
+      <div id="search_result" *ngIf="searchQuery != ''">
+          <header>የፍለጋ ውጤት ለ<span id="search_query">{{searchQuery}}</span> {{ searchType === "fasting"? " - ከጾም ምግቦች ውስጥ":searchType === "non_fasting"?" - ከፍስክ ምግቦች ውስጥ":""}} <span style="float:right;color:#777777;" *ngIf="results.length > 0">ወደ {{results.length}} የሚጠጉ ውጤቶች</span></header>
+        
+        <section *ngIf="resultsNotFound">
+            <h1>ይቅርታ! ሙከራዎ ምንም ውጤት አላስገኘም</h1>
+          </section>
+          <section *ngIf="!resultsNotFound">
+              <section *ngIf="results.length == 0 && filterParam != 0">
+                  <h1>ይቅርታ! በመረጡት ማጣሪያ ምንም ምግብ አልተገኘም.</h1>
+                </section>
+      
+              <article *ngFor="let food of results;" class="food_box">
+                  <header>{{food.label}}</header>
+                  <img src="{{food.pic}}" class="food_pic"/>
+                  <section class="food_details">
+                    ዋጋ: <span class="value">{{food.price}}</span><br/>
+                    ተወዳጅነት: <span class="value">{{ food.no_of_stars }} / 10</span><br/>              
+                    የጾም/የፍስክ ： <span class="value">{{ food.fasting?"የጾም":"የፍስክ" }}</span><br/>
+                    <!-- ቦታ: <span class="value">{{food.place}}</span><br/> -->
+                  </section>
+                  <button class="primary_button">እፈልጋለው</button>
+                  <button class="secondary_button">አስተያየቶች</button>        
+                </article>
+          </section>
+        </div>
+    </div>
+</section>

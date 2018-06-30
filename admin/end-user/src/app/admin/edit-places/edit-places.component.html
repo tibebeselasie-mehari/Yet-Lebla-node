@@ -1,0 +1,27 @@
+<h1>ማስተካከያ</h1>
+<hr/>
+<form>
+
+  <label>
+    የምግብ ቤቱ ስም
+    <input class="input" type="text" name="placename" value="{{place.label}}" />
+  </label>
+  <br/>
+  <label>
+    አድራሻ
+    <input class="check" type="checkbox" name="address" value="{{place.address}}" />
+  </label>
+  <br/>
+  <label>
+      ባለ {{place.stars}} ኮከብ
+    </label>
+    <br/>
+    <label>
+      English name:
+      <input class="input" type="text" name="english_name" value="{{place.name}}" />
+    </label>
+    <br/>
+    <br/>
+    <button type="button" class="button is-info" (click)="editPlace()">መዝግብ</button>
+
+</form>

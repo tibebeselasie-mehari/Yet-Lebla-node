@@ -1,0 +1,56 @@
+<section class="hero is-info is-fullheight">
+  <div class="hero-head">
+    <nav class="navbar fixed" id="navbar">
+      <div class="container">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="../">
+            <img src="/assets/logo.png" alt="Logo">
+          </a>
+          <span class="navbar-burger burger" data-target="navbarMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </div>
+        <div id="navbarMenu" class="navbar-menu">
+          <div class="navbar-end">
+
+            <a class="navbar-item" routerLink="/" routerLinkActive = "is-active">
+              Home
+            </a>
+            <a class="navbar-item" routerLink="/bestFoods" routerLinkActive = "is-active">
+              ምርጥ ምርጥ
+            </a>
+            <a class="navbar-item" routerLink="/foodCourt" routerLinkActive = "is-active">
+              ምግብ ያጋሩ
+            </a>
+            <a class="navbar-item" routerLink="/foodCourt" routerLinkActive = "is-active">
+              ምግቦች
+            </a>
+            <a class="navbar-item" routerLink="/affordable" routerLinkActive = "is-active">
+              ተመጣጣኝ
+            </a>
+            <a class="navbar-item" routerLink="/search" routerLinkActive = "is-active">
+              መፈለጊያ
+            </a>
+
+            <span class="navbar-item" routerLink="/login" routerLinkActive = "is-active">
+              <a class="button is-white is-outlined is-small">
+                Log in
+              </a>
+            </span>
+
+            <span class="navbar-item" routerLink="/register" routerLinkActive = "is-active">
+              <a class="button is-white is-outlined is-small">
+                
+                Sign up
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+<router-outlet></router-outlet>
+</section>
+

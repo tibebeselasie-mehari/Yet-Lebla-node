@@ -1,0 +1,50 @@
+<div class="columns">
+  <div class="column is-9">
+    <div class="box content">
+
+        <section class="hero is-primary is-small">
+            <div class="hero-body">
+              <div class="container">
+                <h1 class="title">
+                    የተመዘገቡ የምግብ ቤቶች
+                </h1>
+                <br/>
+                <h2 class="subtitle">
+                    <button class="button is-info" routerLink='new'>አዲስ የምግብ ቤት መዝግብ</button>
+                </h2>
+              </div>
+            </div>
+          </section>
+          <br/>
+    
+          <table>
+        <thead>
+          <th>የምግብ ቤቱ ስም</th>
+          <th>አድራሻ</th>
+          <th>ኮከቦች</th>
+          <th>እርምጃ 1</th>
+          <th>እርምጃ 2</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let place of getPlaces();">
+            <td>{{place.label}}</td>
+            <td>{{place.place}}</td>
+            <td>{{place.price}}</td>
+            <td>
+              <button class="button is-info" routerLink='edit/{{place.name}}'>አስተካክል</button>
+            </td>
+            <td>
+              <button class="button is-danger" (click)='removePlace()'>አስወግድ</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="column is-3">
+    <div class="box content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</div>

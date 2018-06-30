@@ -1,0 +1,157 @@
+API routes(for places) and their functions
+==========================================
+
+path (API route) : /around/<place>
+    returns an array of places that are close to <place>
+    the limit is 10 by default.
+    optional params (query): 
+        limit - to change the number of places in the result
+        startsWith - to filter only the results that starts with some string
+        minPrice - to filter results that are greater in price than a specified number
+        maxPrice - to filter results that are less in price than a specified number
+
+-----------------------------------------------
+
+path (API route) : /around/<place>/best
+    the same as /around/<place> route but the results are sorted based on their ratings before they are fetched
+
+    optional params: refer to /around/<place> api route
+
+-----------------------------------------------
+
+path (API route) : /around/<place>/<parent-food>
+    returns an array of places that are close to <place> and serve the <parent-food>
+    optional params (query): 
+        limit - to change the number of places in the result (10 is the default value)
+        startsWith - to filter only the results that starts with some string
+        minPrice - to filter results that are greater in price than a specified number
+        maxPrice - to filter results that are less in price than a specified number
+
+----------------------------------------------
+
+path (API route) : /around/<place>/<parent-food>/cheap
+
+    const place = req.params.place;
+    const limit = req.query.limit || 10;
+    const startsWith = req.query.startsWith;
+    const parentFood = req.params.parentFood;
+
+    res.send('places to eat '+parentFood+' around'+place);
+
+-----------------------------------------------
+
+path (API route) : /around/<place>/<parent-food>/expensive
+
+    const place = req.params.place;
+    const limit = req.query.limit || 10;
+    const startsWith = req.query.startsWith;
+    const parentFood = req.params.parentFood;
+
+    res.send('places to eat '+parentFood+' around'+place);
+
+-----------------------------------------------
+
+path (API route) : /around/<place>/<parent-food>/best
+
+    the same as /around/<place>/<parent-food>/ route but the results are sorted based on their ratings before they are fetched
+
+    optional params: refer to /around/<place>/<parent-food>/ api route
+
+-----------------------------------------------
+
+path (API route) : /around/<place>/<parent-food>/<child-food>/
+
+    returns an array of places that are close to <place> and serve the <child-food>
+
+    you need to mention <parent-food>, otherwise <child-food> paramerter will be assumed as a parent food category.
+
+    optional params (query): 
+        limit - to change the number of places in the result (10 is the default value)
+        startsWith - to filter only the results that starts with some string
+        minPrice - to filter results that are greater in price than a specified number
+        maxPrice - to filter results that are less in price than a specified number
+
+-----------------------------------------------
+
+path (API route) : /around/<place>/<parent-food>/<child-food>/cheap
+
+    const place = req.params.place;
+    const limit = req.query.limit || 10;
+    const startsWith = req.query.startsWith;
+    const parentFood = req.params.parentFood;
+    const childFood = req.params.childFood;
+
+    res.send('places to eat '+parentFood+' around'+place);
+
+-----------------------------------------------
+
+path (API route) : /around/<place>/<parent-food>/<child-food>/expensive
+
+    const place = req.params.place;
+    const limit = req.query.limit || 10;
+    const startsWith = req.query.startsWith;
+    const parentFood = req.params.parentFood;
+    const childFood = req.params.childFood;
+
+
+    res.send('places to eat '+parentFood+' around'+place);
+
+-----------------------------------------------
+
+path (API route) : /around/<place>/<parent-food>/<child-food>/best
+
+    const place = req.params.place;
+    const limit = req.query.limit || 10;
+    const startsWith = req.query.startsWith;
+    const parentFood = req.params.parentFood;
+    const childFood = req.params.childFood;
+    const minPrice = req.query.minPrice || 0;
+    const maxPrice = req.query.maxPrice || 100000;
+
+    res.send('places to eat '+parentFood+' around'+place);
+
+-----------------------------------------------
+
+path (API route) : /near-to
+    returns an array of places that are physically near to the lat and long provided.
+    required parameters (query):
+        lat - the latitude value
+        long - the longitude value
+    optional params (query): 
+        limit - to change the number of places in the result (10 is the default value)
+        startsWith - to filter only the results that starts with some string
+        minPrice - to filter results that are greater in price than a specified number
+        maxPrice - to filter results that are less in price than a specified number
+
+-----------------------------------------------
+
+path (API route) : /<parent-place>
+    returns an information about <parent-place> including the branches(child places) for the parent-place
+
+    optional params (query): 
+        limit - to change the number of places in the result (10 is the default value)
+        sortBy - sort the result before the limit is applied. (default is by name, ASC)
+        startsWith - to filter only the results that starts with some string 
+
+-----------------------------------------------
+
+path (API route) : /<parent-place>/<name>
+    returns an information about <parent-place> including the branches(child places) for <name>.
+
+    optional params (query):
+        limit - to change the number of child places in the result (10 is the default value)
+
+-----------------------------------------------
+
+path (API route) : /<parent-place>/<name>/menu
+    returns a menu for the particular <name>
+
+-----------------------------------------------
+
+path (API route) : /<parent-place>/<name>/reviews
+    returns an array of reviews for the <name>
+
+    optional params (query):
+        limit : limits the numbers of reviews that are gonna be fetched. (10 is the default)
+
+-----------------------------------------------
