@@ -1,0 +1,1375 @@
+{
+	"info": {
+		"_postman_id": "7d3d1b8c-f4f9-487c-baf3-981697f6142a",
+		"name": "Yet Lebla REST API tests",
+		"description": "This is collections of test for REST API of Yet-Lebla project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "non-sepcific API routes",
+			"description": null,
+			"item": [
+				{
+					"name": "Non-specific route: /api/",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "a853aef1-92aa-404f-ad82-041b168dbe23",
+								"type": "text/javascript",
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"    ",
+									"pm.test(\"the success field must be false\", function () {",
+									"    pm.expect(jsonData.success).to.eql(false);",
+									"});",
+									"",
+									"pm.test(\"the reason must hint client to use specific routes\", () => {",
+									"    pm.expect(jsonData.reason).to.eql(\"please use specific route.\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3001/api/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								""
+							]
+						},
+						"description": "The api route `/api/` doesn't do anything useful because it not a concrete route (not specific).\nThe API would send a response that resembles the following:\n`{\n    \"success\": false,\n    \"reason\": \"please use specific route.\"\n}`"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "foods",
+			"description": "",
+			"item": [
+				{
+					"name": "test retrieving all foods",
+					"description": null,
+					"item": [
+						{
+							"name": "test retrieving with no params",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "33b45ab7-a70a-4678-aacf-3a257e31a5bc",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"var schema = {",
+											"  \"items\": {",
+											"    \"type\": \"object\"",
+											"  }",
+											"};",
+											"",
+											"pm.test('data field must be array of objects', function() {",
+											"  pm.expect(tv4.validate(pm.response.json().data, schema)).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must equal number of results returned\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.eql(jsonData.data.length);",
+											"});",
+											"",
+											"// to-do: check elements of data are of food objects "
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "localhost:3001/api/foods",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"foods"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						},
+						{
+							"name": "test retrieving with limit",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "08018179-044b-49ad-a6e2-7e08a31c00d4",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"var schema = {",
+											"  \"items\": {",
+											"    \"type\": \"object\"",
+											"  }",
+											"};",
+											"",
+											"pm.test('data field must be array of objects', function() {",
+											"  pm.expect(tv4.validate(pm.response.json().data, schema)).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must equal number of results returned\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.eql(jsonData.data.length);",
+											"});",
+											"",
+											"",
+											"pm.test(\"number of places returned must be less thab the 'limit' specified in the request\", () => {",
+											"    pm.expect(jsonData.data.length).to.lte(1);",
+											"});",
+											"",
+											"",
+											"// to-do: check elements of data are of food objects "
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "localhost:3001/api/foods?limit=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"foods"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "places",
+			"description": "",
+			"item": [
+				{
+					"name": "test retrieving all places",
+					"description": null,
+					"item": [
+						{
+							"name": "test retrieving with no params",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9989e6ad-7767-42c4-ba90-ff35a8f2c958",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"var schema = {",
+											"  \"items\": {",
+											"    \"type\": \"object\"",
+											"  }",
+											"};",
+											"",
+											"pm.test('data field must be array of objects', function() {",
+											"  pm.expect(tv4.validate(pm.response.json().data, schema)).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must equal number of results returned\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.eql(jsonData.data.length);",
+											"});",
+											"",
+											"// to-do: check elements of data are of place objects "
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "localhost:3001/api/places",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"places"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						},
+						{
+							"name": "test retrieving with limit",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "fd7f8f78-bf85-49db-b119-ed4d21d3cfd7",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"var schema = {",
+											"  \"items\": {",
+											"    \"type\": \"object\"",
+											"  }",
+											"};",
+											"",
+											"pm.test('data field must be array of objects', function() {",
+											"  pm.expect(tv4.validate(pm.response.json().data, schema)).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must equal number of results returned\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.eql(jsonData.data.length);",
+											"});",
+											"",
+											"",
+											"pm.test(\"number of places returned must be less thab the 'limit' specified in the request\", () => {",
+											"    pm.expect(jsonData.data.length).to.lte(1);",
+											"});",
+											"",
+											"",
+											"",
+											"// to-do: check elements of data are of place objects "
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "localhost:3001/api/places?limit=1",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"places"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"description": "",
+			"item": [
+				{
+					"name": "test login",
+					"description": null,
+					"item": [
+						{
+							"name": "test login with invalid or missing credentials",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "015e1e65-7530-4761-9ca6-9d00c1910b71",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be false\", () => {",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"a reason should be provided\", () => {",
+											"    pm.expect(jsonData.reason).to.eql('invalid or missing credential has been provided.');",
+											"});",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "localhost:3001/api/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						},
+						{
+							"name": "test login with incorrect username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f680226-6654-466e-ac5f-53b8d7e07ba2",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be false\", () => {",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"a reason should be provided\", () => {",
+											"    pm.expect(jsonData.reason).to.eql('username doesn\\'t exist');",
+											"});",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "incorrect_username",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3001/api/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						},
+						{
+							"name": "test login with incorrect password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f680226-6654-466e-ac5f-53b8d7e07ba2",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be false\", () => {",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"a reason should be provided\", () => {",
+											"    pm.expect(jsonData.reason).to.eql('username doesn\\'t exist');",
+											"});",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "incorrect_username",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3001/api/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						},
+						{
+							"name": "test login with correct credentials",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "725e5426-51b5-4299-bab0-7e9f101e4ec1",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"",
+											"pm.test(\"a token should be returned\", () => {",
+											"    pm.expect(jsonData.token).to.not.eql(undefined);",
+											"});",
+											"",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "tibebe",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3001/api/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "test register",
+					"description": null,
+					"item": [
+						{
+							"name": "test login with invalid or missing credentials",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "015e1e65-7530-4761-9ca6-9d00c1910b71",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be false\", () => {",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"a reason should be provided\", () => {",
+											"    pm.expect(jsonData.reason).to.eql('invalid or missing credential has been provided.');",
+											"});",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "localhost:3001/api/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						},
+						{
+							"name": "test register with taken username",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f680226-6654-466e-ac5f-53b8d7e07ba2",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be false\", () => {",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"a reason should be provided\", () => {",
+											"    pm.expect(jsonData.reason).to.eql('username doesn\\'t exist');",
+											"});",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "incorrect_username",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3001/api/auth/register",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"auth",
+										"register"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						},
+						{
+							"name": "test login with incorrect password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "3f680226-6654-466e-ac5f-53b8d7e07ba2",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be false\", () => {",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"",
+											"pm.test(\"a reason should be provided\", () => {",
+											"    pm.expect(jsonData.reason).to.eql('username doesn\\'t exist');",
+											"});",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "incorrect_username",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3001/api/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						},
+						{
+							"name": "test login with correct credentials",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "725e5426-51b5-4299-bab0-7e9f101e4ec1",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"",
+											"pm.test(\"a token should be returned\", () => {",
+											"    pm.expect(jsonData.token).to.not.eql(undefined);",
+											"});",
+											"",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/x-www-form-urlencoded"
+									}
+								],
+								"body": {
+									"mode": "urlencoded",
+									"urlencoded": [
+										{
+											"key": "username",
+											"value": "tibebe",
+											"description": "",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "password",
+											"description": "",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "localhost:3001/api/auth/login",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"auth",
+										"login"
+									]
+								},
+								"description": "the /api/places/ returns a JSON response that contains all the places stored in the database as its `data` field. This request contains test cases to make sure that api routes functions well and returns data in the proper format."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				}
+			]
+		},
+		{
+			"name": "search",
+			"description": "",
+			"item": [
+				{
+					"name": "test searching foods",
+					"description": "Test searching food objects from the API.\nThe api route to search for foods is `/api/search`",
+					"item": [
+						{
+							"name": "test searching non-existent food",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "d3c8e0af-c3f0-4f88-8b92-81c569cbb669",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be false\", () => {",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"food doesnt exist message must be returned\", () => {",
+											"    pm.expect(jsonData.reason).to.include(\"doesn't match any food\");",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3001/api/search?q=some_long_string_that_probably_doesnt_have_a_food_named_after_it&option=food",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "some_long_string_that_probably_doesnt_have_a_food_named_after_it"
+										},
+										{
+											"key": "option",
+											"value": "food"
+										}
+									]
+								},
+								"description": "If `q (query string)` and `option = \"food\"` doesn't have a match on the foods on the persistence tier, an error message(with success field as false) should be provided from the api."
+							},
+							"response": []
+						},
+						{
+							"name": "test searching food with limit specified",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "8f0ede2a-cf69-4f6d-a4af-622e19ede861",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"",
+											"pm.test(\"no_of_results's value must be less thab the 'limit' in the request\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.lte(2);",
+											"});",
+											"",
+											"var schema = {",
+											"  \"items\": {",
+											"    \"type\": \"object\"",
+											"  }",
+											"};",
+											"",
+											"pm.test('data field must be array of objects', function() {",
+											"  pm.expect(tv4.validate(pm.response.json().data, schema)).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must equal number of results returned\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.eql(jsonData.data.length);",
+											"});",
+											"",
+											"// to-do: check elements of data are of food objects ",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3001/api/search?q=a&option=food&limit=2",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "a"
+										},
+										{
+											"key": "option",
+											"value": "food"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										}
+									]
+								},
+								"description": "The number of results might br quite large. The  `limit` param in the request specifies the limit for the number of results returned."
+							},
+							"response": []
+						},
+						{
+							"name": "test searching existent food",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "9072090c-2992-4719-a8e1-10b7c03859a2",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must be at least 1\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.gte(1);",
+											"});",
+											"",
+											"var schema = {",
+											"  \"items\": {",
+											"    \"type\": \"object\"",
+											"  }",
+											"};",
+											"",
+											"pm.test('data field must be array of objects', function() {",
+											"  pm.expect(tv4.validate(pm.response.json().data, schema)).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must equal number of results returned\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.eql(jsonData.data.length);",
+											"});",
+											"",
+											"// to-do: check elements of data are of food objects "
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3001/api/search?q=a&option=food",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "a",
+											"description": "since a is 'a' vowel (we know we will have a hit)"
+										},
+										{
+											"key": "option",
+											"value": "food"
+										}
+									]
+								},
+								"description": "If `q (query string)` and `option = \"food\"` have a match on the foods stored on the persistence tier, the result returned JSON response should be have a success field `true` and the     `\"data\"` field must contain array of matched food/s objects."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "test searching places",
+					"description": "Test searching food objects from the API.\nThe api route to search for foods is `/api/search`",
+					"item": [
+						{
+							"name": "test searching existent place",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "c5f8ed4d-e50f-49c6-8777-69ae2679f040",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must be at least 1\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.gte(1);",
+											"});",
+											"",
+											"var schema = {",
+											"  \"items\": {",
+											"    \"type\": \"object\"",
+											"  }",
+											"};",
+											"",
+											"pm.test('data field must be array of objects', function() {",
+											"  pm.expect(tv4.validate(pm.response.json().data, schema)).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must equal number of results returned\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.eql(jsonData.data.length);",
+											"});",
+											"",
+											"// to-do: check elements of data are of place objects "
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3001/api/search?q=d&option=place",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "d",
+											"description": "we have made sure that it exists"
+										},
+										{
+											"key": "option",
+											"value": "place"
+										}
+									]
+								},
+								"description": "If `q (query string)` and `option = \"food\"` have a match on the foods stored on the persistence tier, the result returned JSON response should be have a success field `true` and the \t\t`\"data\"` field must contain array of matched food/s objects."
+							},
+							"response": []
+						},
+						{
+							"name": "test searching place with limit specified",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "a4be0f1a-991f-477a-8c7e-5fefa198d14f",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be true\", () => {",
+											"    pm.expect(jsonData.success).to.eql(true);",
+											"});",
+											"",
+											"",
+											"pm.test(\"no_of_results's value must be less thab the 'limit' in the request\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.lte(2);",
+											"});",
+											"",
+											"var schema = {",
+											"  \"items\": {",
+											"    \"type\": \"object\"",
+											"  }",
+											"};",
+											"",
+											"pm.test('data field must be array of objects', function() {",
+											"  pm.expect(tv4.validate(pm.response.json().data, schema)).to.be.true;",
+											"});",
+											"",
+											"pm.test(\"no_of_results's value must equal number of results returned\", () => {",
+											"    pm.expect(jsonData.no_of_results).to.eql(jsonData.data.length);",
+											"});",
+											"",
+											"// to-do: check elements of data are of place objects ",
+											""
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3001/api/search?q=d&option=place&limit=1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "d"
+										},
+										{
+											"key": "option",
+											"value": "place"
+										},
+										{
+											"key": "limit",
+											"value": "1"
+										}
+									]
+								},
+								"description": "The number of results might br quite large. The\t`limit` param in the request specifies the limit for the number of results returned."
+							},
+							"response": []
+						},
+						{
+							"name": "test searching non-existent place",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"id": "4ef2065f-6d93-4572-9f4c-20bba6238eec",
+										"type": "text/javascript",
+										"exec": [
+											"const jsonData = pm.response.json();",
+											"",
+											"pm.test(\"success field should be false\", () => {",
+											"    pm.expect(jsonData.success).to.eql(false);",
+											"});",
+											"",
+											"pm.test(\"food doesnt exist message must be returned\", () => {",
+											"    pm.expect(jsonData.reason).to.include(\"doesn't match any place\");",
+											"});"
+										]
+									}
+								}
+							],
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {},
+								"url": {
+									"raw": "http://localhost:3001/api/search?q=some_long_string_that_probably_doesnt_have_a_food_named_after_it&option=place",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3001",
+									"path": [
+										"api",
+										"search"
+									],
+									"query": [
+										{
+											"key": "q",
+											"value": "some_long_string_that_probably_doesnt_have_a_food_named_after_it"
+										},
+										{
+											"key": "option",
+											"value": "place"
+										}
+									]
+								},
+								"description": "If `q (query string)` and `option = \"food\"` doesn't have a match on the foods on the persistence tier, an error message(with success field as false) should be provided from the api."
+							},
+							"response": []
+						}
+					],
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "test search place with no query",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "16ee104d-2258-4d34-be20-cc8e2e61de9a",
+								"type": "text/javascript",
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"success field should be false\", () => {",
+									"    pm.expect(jsonData.success).to.eql(false);",
+									"});",
+									"",
+									"pm.test(\"a reason should be provided\", () => {",
+									"    pm.expect(jsonData.reason).to.eql(\"no query string provided\");",
+									"});",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3001/api/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"search"
+							]
+						},
+						"description": "search query string must be provided to tell the api what to search for.\nIf not provided,\nA success `field` of the returned json should be `false`\nand the `reason` be `\"no query string provided\"`"
+					},
+					"response": []
+				},
+				{
+					"name": "test search with query but no searching option",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8ece8a9c-0547-4f98-8eea-24d26436c64a",
+								"type": "text/javascript",
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"success field should be false\", () => {",
+									"    pm.expect(jsonData.success).to.eql(false);",
+									"});",
+									"",
+									"pm.test(\"a reason should be provided\", () => {",
+									"    pm.expect(jsonData.reason).to.eql(\"no searching option provided\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3001/api/search?q=some_string",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "some_string",
+									"description": "query string"
+								}
+							]
+						},
+						"description": "searching option must be provided to identify whether to search foods or places.\nIf `q (query string)` is specified but `option` not provided,\nA success `field` of the returned json should be `false`\nand the `reason` be `\"no searching option provided\"`"
+					},
+					"response": []
+				},
+				{
+					"name": "test searching with query but invalid option",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "0418c567-8b2a-491c-9751-7452c716d772",
+								"type": "text/javascript",
+								"exec": [
+									"const jsonData = pm.response.json();",
+									"",
+									"pm.test(\"success field should be false\", () => {",
+									"    pm.expect(jsonData.success).to.eql(false);",
+									"});",
+									"",
+									"pm.test(\"a reason should be provided\", () => {",
+									"    pm.expect(jsonData.reason).to.include(\"is not a valid search option\");",
+									"});"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {},
+						"url": {
+							"raw": "http://localhost:3001/api/search?q=some_string&option=abebe",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"api",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "some_string"
+								},
+								{
+									"key": "option",
+									"value": "abebe"
+								}
+							]
+						},
+						"description": "searching option to be provided to the API must either be `\"food\"` or `\"place\"`.\nIf other value is provided, the api would set the `success` field of the response object to `false` and tells an invalid   `\"option\"` value has been entered to the client via the `\"reason\"` field of the repsonse object."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
